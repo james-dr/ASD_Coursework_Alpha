@@ -32,16 +32,17 @@ namespace VendingMachine {
             MainMenu();
         }
         public void AdminMenu() {
-            Console.WriteLine("###############################");
-            Console.WriteLine("#         Admin Menu          #");
-            Console.WriteLine("###############################");
-            Console.WriteLine("1. Change a snack price");
-            Console.WriteLine("2. Increase change pool");
-            Console.WriteLine("3. See total money in machine");
-            Console.WriteLine("4. Return to menu");
-            Console.Write("Choose option: ");
-            int choice = Convert.ToInt32(Console.ReadLine());
             while (true) {
+                Console.Clear();
+                Console.WriteLine("###############################");
+                Console.WriteLine("#         Admin Menu          #");
+                Console.WriteLine("###############################");
+                Console.WriteLine("1. Change a snack price");
+                Console.WriteLine("2. Increase change pool");
+                Console.WriteLine("3. See total money in machine");
+                Console.WriteLine("4. Return to menu");
+                Console.Write("Choose option: ");
+                int choice = Convert.ToInt32(Console.ReadLine());
                 if (choice == 4) {
                     break;
                 }
@@ -50,11 +51,20 @@ namespace VendingMachine {
                     case 1:
                         break;
                     case 2:
+                        Console.Clear();
+                        Dictionary<string, int> coinsReceived = new Dictionary<string, int>();
+                        for (int i = 0; i < coinTypes.Length; i++) {
+                            Console.WriteLine($"Number of {String.Format("{0:0.00}", coinTypes[i])} coins inserted: ");
+                            int numInserted = Convert.ToInt32(Console.ReadLine());
+                            coinsReceived.Add(coinTypes[i], numInserted);
+                        }
+                        controller.AllocateCoins(coinsReceived);
                         break;
                     case 3:
                         break;
                 }
             }
+            MainMenu();
         }
         private void TransactionMenu(int choice) {
 
