@@ -20,7 +20,8 @@ namespace VendingMachine {
             Snack s2 = new Snack("Choc Bar", 1.25, 10);
             Snack s3 = new Snack("Skittles", 1.7, 10);
             Snack s4 = new Snack("Bikkies", 1.7, 10);
-
+            Machine m1 = new Machine();
+            Console.WriteLine(m1.GetTotalChange());
             Menu menu = new Menu();
             menu.controller.AddSnack(s1);
             menu.controller.AddSnack(s2);

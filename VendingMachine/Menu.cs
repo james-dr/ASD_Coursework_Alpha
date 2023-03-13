@@ -49,6 +49,20 @@ namespace VendingMachine {
                 switch (choice) {
 
                     case 1:
+                        //Reprint available snack info
+                        Console.WriteLine(String.Format("{0,-4}{1,-10} -- {2,-6} -- {3,-10}", "", "Snack", "Price", "QTY"));
+                        Console.WriteLine(this.controller.GetSnackData());
+
+                        //Snack number the user wants to change the price for
+                        Console.WriteLine("Please enter the number of the snack you wish to change the price for: > ");
+                        int sNum = Convert.ToInt32(Console.ReadLine());
+
+                        //New snack price
+                        Console.WriteLine("Please enter the new price: > ");
+                        double sPrice = Math.Round(Convert.ToDouble(Console.ReadLine()), 2);
+
+                        //Invoke ChangeSnackPrice method from Machine class
+                        controller.ChangeSnackPrice(sNum, sPrice);
                         break;
                     case 2:
                         Console.Clear();
@@ -61,6 +75,10 @@ namespace VendingMachine {
                         controller.AllocateCoins(coinsReceived);
                         break;
                     case 3:
+                        // Invoke GetTotalChange method from Machine class
+                        Console.WriteLine(controller.OutputTotalChange());
+                        Console.WriteLine("Press any button to continue");
+                        Console.ReadLine();
                         break;
                 }
             }
@@ -96,8 +114,6 @@ namespace VendingMachine {
 
             Console.WriteLine(controller.GetChange(coinTypes));
 
-            // Check if enough to purchase
-            //
         }
     }
 }

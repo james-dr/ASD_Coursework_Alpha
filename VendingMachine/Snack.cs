@@ -21,6 +21,7 @@ namespace VendingMachine {
             this.SnackQuantity = startingQuantity;
         }
 
+        
         public override string ToString() {
             return String.Format("{0,-10} -- £{1,-5} -- {2,-5}", 
                 this.SnackName, String.Format("{0:0.00}", this.SnackPrice), this.SnackQuantity);

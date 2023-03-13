@@ -70,7 +70,6 @@ namespace VendingMachine {
                 int coinsGiven = (int)((changeLeft - (changeLeft % coin)) / coin);
 
                 if (coinsGiven >= 1) {
-                    Console.WriteLine(coinTally);
                     if (coinsGiven > coinTally) {
                         coinsGiven = coinTally;
                         coinsChange[type] = coinsGiven;
@@ -96,7 +95,6 @@ namespace VendingMachine {
         private bool AllocateChange(Dictionary<string, int> coins) {
             List<string> keys = new List<string>(coins.Keys);
             foreach (var item in keys) {            
-                Console.WriteLine(item);
                 int value = coins[item];
                 vending.ChangeVals[item] -= value;
 
@@ -106,6 +104,18 @@ namespace VendingMachine {
         }
         public void AddSnack(Snack snack) {
             vending.SnacksForSale.Add(snack);
+        }
+
+        //Change Snack price
+        public void ChangeSnackPrice(int SnackNum, double NewPrice) {
+            int SnackPos = SnackNum - 1;
+            vending.SnacksForSale[SnackPos].SnackPrice = NewPrice;
+
+            Console.WriteLine(vending.SnacksForSale[SnackPos] + " price changed to " + NewPrice);
+        }
+
+        public string OutputTotalChange() {
+            return "The total amount of money in the machine is: " + String.Format("{0:0.00}", vending.GetTotalChange());
         }
     }
 }
